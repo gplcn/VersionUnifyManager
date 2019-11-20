@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<config>
+    <android>
+        <compileSdkVersion>27</compileSdkVersion>
+        <minSdkVersion>15</minSdkVersion>
+        <targetSdkVersion>23</targetSdkVersion>
+    </android>
+
+    <internal>
+        <!-- global_grade value can be:[CUSTOM,SNAPSHOT,RELEASE] ; grade value can be:[SNAPSHOT,RELEASE]-->
+        <global_grade>CUSTOM</global_grade>
+        <group>
+            <id>com.gl.module</id>
+            <artifact>
+                <id>test-V1</id>
+                <version_name>1.0</version_name>
+                <grade>SNAPSHOT</grade>
+            </artifact>
+
+            <artifact>
+                <id>test-V2</id>
+                <version_name>1.1</version_name>
+                <grade>RELEASE</grade>
+            </artifact>
+        </group>
+
+    </internal>
+
+    <external>
+
+        <group>
+            <id>com.google.code.gson</id>
+            <artifact>
+                <id>gson</id>
+                <version_name>2.8.0</version_name>
+            </artifact>
+        </group>
+
+        <group>
+            <id>com.fasterxml.jackson.core</id>
+            <artifact>
+                <id>jackson-core</id>
+                <version_name>2.9.7</version_name>
+            </artifact>
+        </group>
+    </external>
+</config>

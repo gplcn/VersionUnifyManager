@@ -1,0 +1,11 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+}
+
+group = 'com.gl.plugin'
+version = '1.0.0'
+
