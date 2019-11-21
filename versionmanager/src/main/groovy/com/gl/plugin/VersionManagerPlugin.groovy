@@ -12,8 +12,26 @@ import org.gradle.api.artifacts.DependencyResolveDetails
 class VersionManagerPlugin implements Plugin<Project> {
     @Override
     void apply(Project project) {
-        def customConfig = project.rootProject.getExtensions().create("customConfig", CustomConfig)
-        def expectFile = new File("${project.getRootDir().parentFile.path}/version-config.xml")
+        def rootProject = project.rootProject
+        def expectFile = null
+        def localPropertiesDirEnable = true
+        def customConfig = rootProject.getExtensions().create("customConfig", CustomConfig)
+        File file = rootProject.file('local.properties')
+        if (file.exists()) {
+            InputStream inputStream = rootProject.file('local.properties').newDataInputStream();
+            Properties properties = new Properties()
+            properties.load(inputStream)
+
+            if (properties.containsKey("version_manager_dir")) {
+                expectFile = new File("${properties.getProperty("version_manager_dir")}/version-config.xml")
+            }
+
+            if (properties.containsKey("version_manager_dir_enable")) {
+                localPropertiesDirEnable = properties.getProperty("version_manager_dir_enable") asBoolean()
+            }
+        }
+        if (null == expectFile || !localPropertiesDirEnable || !expectFile.exists())
+            expectFile = new File("${project.getRootDir().parentFile.path}/version-config.xml")
         if (!expectFile.exists()) expectFile = new File("${project.getRootDir().path}/version-config.xml")
         println("version-config.xml path is ${expectFile.path}")
         def slurper = new XmlSlurper().parse(expectFile)
