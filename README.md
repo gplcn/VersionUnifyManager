@@ -2,20 +2,20 @@
 
 ## 引用步骤
 
-```
- 准备工作：
- 1 新建一个目录并创建文件「version-config.xml」按规范编写相应信息
- 2 将「version-config.xml」复制一个副本到项目的根目录下	
- 3 在项目的「local.properties」中添加上述文件所在目录信息
+
+####  准备工作：
+ 
+ 1. 新建一个目录并创建文件「version-config.xml」按 [规范](https://github.com/gplcn/VersionUnifyManager/blob/master/version-config%E9%85%8D%E7%BD%AE%E8%A7%84%E8%8C%83.md) 编写相应信息
+ 2. 将「version-config.xml」复制一个副本到项目的根目录下	
+ 3. 在项目的「local.properties」中添加上述文件所在目录信息
  	eg:
  	version_manager_dir= ${version-config.xml的目录路径}
 	version_manager_dir_enable = true  
 
-	version_manager_dir_enable 取值true或false 含义为是否使用上述配置路径的中的配置文件
+	* version_manager_dir_enable 取值true或false 含义为是否使用上述配置路径的中的配置文件
 	如果为false 将引用项目根目录下的配置文件「version-config.xml」
 	
-```
-
+#### ***gradle***配置
 1. 在 RootProject 的「build.gradle」中的dependencies添加：``classpath 'com.gl.plugin:version-manager:1.0.0'``
 
 eg:
@@ -132,16 +132,5 @@ dependencies {
 
 
 
-
-
-inlibone  	|	1.0		|1.0S	|2.0		|2.0S
-:---|:--|:--|:--|:--
-inlibtwo |1.0（one1.0）|1.0S->(one1.0S)|2.0(one1.0)|2.0S(one1.0S)
-
-
-
-
-
-``gradlew -q :app:dependencies > dependencies.txt``
 
 
