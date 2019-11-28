@@ -10,6 +10,7 @@ import org.gradle.api.artifacts.DependencyResolveDetails
  * Created by Peilei.Gao on 2019-11-18.
  */
 class VersionManagerPlugin implements Plugin<Project> {
+    static Boolean gitAutoPullEnable = false
     @Override
     void apply(Project project) {
         def rootProject = project.rootProject
@@ -28,6 +29,9 @@ class VersionManagerPlugin implements Plugin<Project> {
 
             if (properties.containsKey("version_manager_dir_enable")) {
                 localPropertiesDirEnable = properties.getProperty("version_manager_dir_enable") asBoolean()
+            }
+            if (properties.containsKey("git_auto_pull_enable")) {
+                gitAutoPullEnable = Boolean.parseBoolean(properties.getProperty("git_auto_pull_enable") )
             }
         }
         if (null == expectFile || !localPropertiesDirEnable || !expectFile.exists())
